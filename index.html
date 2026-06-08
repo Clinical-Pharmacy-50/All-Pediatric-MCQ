@@ -2,22 +2,24 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Pediatric MCQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pediatric MCQ</title>
     <style>
-        /* Medical Theme Palette */
+        /* Modern, Clean, and Friendly Medical Theme */
         :root {
             --primary-blue: #005C97;     
             --secondary-blue: #3385C6;   
-            --bg-color: #f0f4f8;         
+            --bg-color: #f4f7f6;         
             --container-bg: #ffffff;
-            --accent-orange: #ff9f1c;    
-            --hover-orange: #f3910c;
+            --accent-orange: #f39c12;    
+            --hover-orange: #e67e22;
             --correct-green: #27ae60;
             --wrong-red: #e74c3c;
             --text-dark: #2c3e50;
             --text-light: #7f8c8d;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,14 +31,15 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding-bottom: 80px; 
+            padding-bottom: 50px; 
+            word-wrap: break-word; overflow-wrap: break-word;
         }
 
         /* Top Header Title */
         .top-header {
             width: 100%;
             text-align: center;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 900;
             color: var(--primary-blue);
             letter-spacing: 1px;
@@ -44,6 +47,7 @@
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 3px solid var(--accent-orange);
+            text-transform: uppercase;
         }
 
         .container {
@@ -52,36 +56,44 @@
             max-width: 750px;
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0, 92, 151, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 92, 151, 0.08);
             text-align: center;
             z-index: 10;
         }
 
         h1 {
             color: var(--primary-blue);
-            font-size: 26px;
+            font-size: 24px;
             margin-bottom: 25px;
             font-weight: 900;
+            text-transform: uppercase;
         }
 
-        /* Instructions Box */
+        /* Instructions Box - Friendly English */
         .instructions-box {
             background-color: #fcfdfe;
             border: 2px solid var(--secondary-blue);
             border-radius: 12px;
-            padding: 15px 20px;
+            padding: 20px;
             margin-bottom: 25px;
-            text-align: right;
-            direction: rtl;
+            text-align: left;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            direction: ltr;
         }
         .instructions-box h3 {
             margin-top: 0;
             color: var(--primary-blue);
-            font-size: 18px;
+            font-size: 20px;
             border-bottom: 1px solid #e1e8ed;
-            padding-bottom: 8px;
-            margin-bottom: 10px;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+        .instructions-box p {
+            font-size: 16px; 
+            font-weight: 600; 
+            color: var(--text-dark); 
+            margin-top: 0;
+            margin-bottom: 12px;
         }
         .instructions-box ul {
             list-style: none;
@@ -90,6 +102,9 @@
             font-size: 15px;
             line-height: 1.8;
             color: var(--text-dark);
+        }
+        .instructions-box li {
+            margin-bottom: 10px;
         }
 
         /* Grid Layouts */
@@ -104,7 +119,7 @@
         .btn-large {
             display: block;
             width: 100%;
-            padding: 16px 10px;
+            padding: 18px 10px;
             margin-bottom: 12px;
             background-color: var(--secondary-blue);
             color: white;
@@ -113,30 +128,33 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(51, 133, 198, 0.3);
+            box-shadow: 0 4px 10px rgba(51, 133, 198, 0.2);
             transition: all 0.2s ease;
         }
         .btn-large:hover { background-color: var(--primary-blue); transform: translateY(-2px); }
         .btn-large:active { transform: scale(0.98); }
 
-        .btn-orange { background-color: var(--accent-orange); box-shadow: 0 4px 10px rgba(255, 159, 28, 0.3); }
+        .btn-orange { background-color: var(--accent-orange); box-shadow: 0 4px 10px rgba(243, 156, 18, 0.2); }
         .btn-orange:hover { background-color: var(--hover-orange); }
-        
+
+        .btn-red { background-color: var(--wrong-red); box-shadow: 0 4px 10px rgba(231, 76, 60, 0.2); font-size: 18px; margin-top: 25px; }
+        .btn-red:hover { background-color: #c0392b; }
+
         .btn-back { background-color: #95a5a6; box-shadow: none; margin-top: 20px;}
         .btn-back:hover { background-color: #7f8c8d; }
 
         .btn-exit {
             background-color: #ecf0f1;
-            color: var(--wrong-red);
-            border: 2px solid var(--wrong-red);
-            padding: 6px 12px;
+            color: var(--text-dark);
+            border: 2px solid #bdc3c7;
+            padding: 8px 16px;
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
             font-size: 14px;
             transition: 0.2s;
         }
-        .btn-exit:hover { background-color: var(--wrong-red); color: white; }
+        .btn-exit:hover { background-color: #bdc3c7; }
 
         /* Screens Management */
         .screen { display: none; animation: fadeIn 0.3s ease-in-out; }
@@ -162,13 +180,13 @@
             width: 0%;
             transition: width 0.4s ease;
         }
-        
+
         .header-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 17px;
+            font-weight: 900;
             color: var(--primary-blue);
             margin-bottom: 20px;
             border-bottom: 2px solid #e1e8ed;
@@ -181,13 +199,13 @@
             margin-bottom: 25px;
             text-align: left;
             color: var(--text-dark);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .options-container { display: flex; flex-direction: column; gap: 10px; }
 
         .option-btn {
-            padding: 14px;
+            padding: 16px;
             background-color: #f8f9fa;
             color: var(--text-dark);
             text-align: left;
@@ -196,12 +214,14 @@
             font-size: 16px;
             cursor: pointer;
             transition: 0.2s;
-            font-weight: 600;
+            font-weight: 700;
+            line-height: 1.4;
         }
         .option-btn:hover:not(:disabled) { background-color: #eaf2f8; border-color: var(--secondary-blue); }
 
         .correct { background-color: var(--correct-green) !important; color: white !important; border-color: #219653 !important; }
         .wrong { background-color: var(--wrong-red) !important; color: white !important; border-color: #c0392b !important; }
+        .opt-selected { background-color: #d6eaf8 !important; color: var(--primary-blue) !important; border-color: var(--secondary-blue) !important; }
 
         /* Simulated Mode Styles */
         .sim-question-block {
@@ -219,89 +239,68 @@
             font-size: 18px;
             font-weight: bold;
             margin-top: 15px;
-            padding: 12px;
+            padding: 15px;
             border-radius: 8px;
             text-align: center;
-            animation: fadeIn 0.3s;
         }
-        .msg-correct { background-color: rgba(46, 204, 113, 0.15); color: #27ae60; }
-        .msg-wrong { background-color: rgba(231, 76, 60, 0.1); color: var(--wrong-red); }
+        .msg-correct { background-color: #e8f8f5; color: #059669; border: 2px solid #34d399; }
+        .msg-wrong { background-color: #fef2f2; color: #b91c1c; border: 2px solid #f87171; }
 
         .quiz-nav-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
         #next-btn, #prev-btn { display: none; margin-bottom: 0; padding: 15px;}
         #prev-btn { background-color: #95a5a6; }
 
         /* Result & Review UI */
-        .score-display { font-size: 50px; font-weight: 900; color: var(--accent-orange); margin: 15px 0; }
-        .custom-arabic-msg { font-size: 22px; font-weight: bold; color: var(--primary-blue); margin-bottom: 10px; direction: rtl; }
+        .score-display { font-size: 60px; font-weight: 900; color: var(--accent-orange); margin: 15px 0; }
+        .custom-arabic-msg { font-size: 24px; font-weight: 900; color: var(--primary-blue); margin-bottom: 15px; direction: rtl; }
         .time-stat { font-size: 18px; font-weight: bold; color: var(--text-dark); margin-bottom: 25px; }
-        
-        .stats { font-size: 18px; margin-bottom: 30px; background: #f8f9fa; padding: 20px; border-radius: 12px; display:flex; justify-content:space-around;}
+
+        .stats { font-size: 18px; margin-bottom: 30px; background: #f8f9fa; padding: 20px; border-radius: 12px; display:flex; justify-content:space-around; border: 2px solid #e1e8ed;}
         .stats span { font-weight: bold; }
         .stat-correct { color: var(--correct-green); }
         .stat-wrong { color: var(--wrong-red); }
 
-        .review-list { text-align: left; max-height: 400px; overflow-y: auto; margin-bottom: 20px; padding-right: 5px; }
-        .review-item { background: #ffffff; border-left: 5px solid var(--wrong-red); padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-        .review-q { font-weight: bold; margin-bottom: 12px; color: var(--text-dark); }
-        .review-wrong { color: var(--wrong-red); margin-bottom: 6px; font-size: 14px; font-weight:bold;}
-        .review-correct { color: var(--correct-green); font-size: 14px; font-weight: bold; }
+        .review-list { text-align: left; max-height: 450px; overflow-y: auto; margin-bottom: 20px; padding-right: 5px; }
+        .review-item { background: #ffffff; border-left: 5px solid var(--wrong-red); padding: 18px; margin-bottom: 15px; border-radius: 8px; border-top: 1px solid #e1e8ed; border-right: 1px solid #e1e8ed; border-bottom: 1px solid #e1e8ed;}
+        .review-q { font-weight: 900; margin-bottom: 12px; color: var(--text-dark); font-size: 16px;}
+        .review-wrong { color: var(--wrong-red); margin-bottom: 6px; font-size: 15px; font-weight:bold;}
+        .review-correct { color: var(--correct-green); font-size: 15px; font-weight: bold; }
 
-        /* Fixed Footer Quote */
-        .footer-quote {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 12px 10px;
-            text-align: center;
-            font-size: 13px;
-            font-style: italic;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-            display: block; 
-            z-index: 100;
-        }
     </style>
 </head>
 <body>
 
-<div class="top-header">Pediatric Questions 🩺</div>
+<div class="top-header">Pediatric MCQ 🩺</div>
 
 <div class="container">
-    
+
     <div id="screen-home" class="screen active">
+        
         <div class="instructions-box">
-            <h3>ℹ️ التعليمات:</h3>
+            <h3>Welcome 👋</h3>
+            <p>Ready to crush some pediatrics? Here is how we roll:</p>
             <ul>
-                <li>1️⃣ <strong>الشابتر:</strong> حدد موضوع معين أو امتحان شامل.</li>
-                <li>2️⃣ <strong>الترتيب:</strong> بالترتيب أو عشوائي أو محاكي كامل للامتحان.</li>
-                <li>3️⃣ <strong>النتيجة:</strong> شوف سكورك ووقتك في الآخر، وراجع أخطائك.</li>
+                <li>1️⃣ <strong>Pick your Chapter:</strong> Dive into a specific topic or mix it all up!</li>
+                <li>2️⃣ <strong>Choose your Vibe (Mode):</strong> Go step-by-step (Sequential/Random) for instant feedback, or test your nerves with the Simulated Exam.</li>
+                <li>3️⃣ <strong>Get your Results:</strong> Finish up to see your score, review your mistakes, and become a master. You got this! 💪</li>
             </ul>
         </div>
-        
-        <button class="btn-large btn-blue" style="padding: 20px; font-size: 20px;" onclick="showScreen('screen-chapters')">
-            📖 SELECT CHAPTER
-        </button>
-    </div>
 
-    <div id="screen-chapters" class="screen">
-        <h1>📖 SELECT CHAPTER</h1>
-        <div class="grid-layout" id="chapters-container">
-            </div>
-        <button class="btn-large btn-back" onclick="showScreen('screen-home')">
-            ⬅️ Back
-        </button>
+        <h3 style="color: var(--primary-blue); font-weight: 900; margin-bottom: 15px; margin-top: 30px;">📚 SELECT CHAPTER</h3>
+        <div class="grid-layout" id="chapters-container"></div>
+
+        <div id="main-footer-quote" style="margin-top: 35px; border-top: 2px solid #e1e8ed; padding-top: 20px; color: var(--text-light); font-size: 14px; font-style: italic; font-weight: bold;">
+            "The saddest aspect of life right now is that science gathers knowledge faster than society gathers wisdom."
+        </div>
     </div>
 
     <div id="screen-setup" class="screen">
         <h1>⚙️ SETUP MODE</h1>
-        
+
         <button class="btn-large btn-blue" onclick="startExam('sequential')">
             🔢 SEQUENTIAL ORDER
         </button>
-        
+
         <button class="btn-large btn-blue" onclick="startExam('random')">
             🔀 RANDOM ORDER
         </button>
@@ -311,8 +310,8 @@
             <span style="display:block; font-size:13px; font-weight:normal; margin-top:5px;">(Fast & Comprehensive)</span>
         </button>
 
-        <button class="btn-large btn-back" onclick="showScreen('screen-chapters')">
-            ⬅️ Back
+        <button class="btn-large btn-back" onclick="goHome()">
+            ⬅️ Back to Home
         </button>
     </div>
 
@@ -320,10 +319,10 @@
         <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
-        
+
         <div class="header-info">
             <span id="question-tracker">Q 1/25</span>
-            <span id="timer">⏱️ 00:00</span>
+            <span id="timer" style="color: var(--accent-orange);">⏱️ 00:00</span>
             <button class="btn-exit" onclick="exitQuiz()">🚪 Exit</button>
         </div>
 
@@ -335,6 +334,8 @@
                 <button class="btn-large" id="prev-btn" onclick="prevQuestion()">⬅️ Back</button>
                 <button class="btn-large btn-orange" id="next-btn" onclick="nextQuestion()">Next ➡️</button>
             </div>
+            
+            <button class="btn-large btn-red" onclick="endExam()">🛑 END EXAM</button>
         </div>
 
         <div id="simulated-quiz-ui" style="display: none; text-align: left;"></div>
@@ -345,19 +346,19 @@
         <div class="score-display" id="final-score">80%</div>
         <div class="custom-arabic-msg" id="custom-arabic-msg"></div>
         <div class="time-stat" id="final-time">⏱️ Time Taken: 00:00</div>
-        
+
         <div class="stats">
             <span class="stat-correct" id="stat-correct">✔️ Correct: 0</span>
             <span class="stat-wrong" id="stat-wrong">❌ Wrong: 0</span>
         </div>
-        
-        <button class="btn-large btn-blue" id="btn-review" onclick="showReview()">
+
+        <button class="btn-large btn-blue" id="btn-review" style="font-size: 18px; padding: 18px;" onclick="showReview()">
             🔍 REVIEW MISTAKES
         </button>
-        <button class="btn-large correct" id="btn-again" onclick="restartExam()" style="display:none; background-color: var(--correct-green);">
-            🔁 AGAIN
+        <button class="btn-large correct" id="btn-again" onclick="restartExam()" style="display:none; background-color: var(--correct-green); font-size: 18px; padding: 18px; margin-top: 15px;">
+            🔁 TRY AGAIN
         </button>
-        <button class="btn-large btn-back" onclick="goHome()">
+        <button class="btn-large btn-back" style="margin-top: 15px;" onclick="goHome()">
             🏠 HOME PAGE
         </button>
     </div>
@@ -365,25 +366,25 @@
     <div id="screen-review" class="screen">
         <h1>🔍 REVIEW MISTAKES</h1>
         <div class="review-list" id="review-list"></div>
-        <button class="btn-large btn-back" onclick="showScreen('screen-result')">
-            ⬅️ Back
-        </button>
-        <button class="btn-large btn-blue" onclick="goHome()">
-            🏠 HOME PAGE
+        <button class="btn-large btn-blue" style="font-size: 16px; padding: 16px;" onclick="showScreen('screen-result')">
+            ⬅️ Back to Results
         </button>
     </div>
 
 </div>
 
-<div class="footer-quote" id="main-footer-quote">
-    "The saddest aspect of life right now is that science gathers knowledge faster than society gathers wisdom."
-</div>
-
 <script>
     // ==========================================
-    // COMPLETE PEDIATRIC DATABASE (111 QUESTIONS)
+    // BULLETPROOF ES5 JAVASCRIPT
     // ==========================================
-    const rawDB = [
+    
+    function getEl(id) { return document.getElementById(id); }
+    function setDisplay(id, val) { var el = getEl(id); if(el) el.style.display = val; }
+    function setText(id, val) { var el = getEl(id); if(el) el.innerText = val; }
+    function setHTML(id, val) { var el = getEl(id); if(el) el.innerHTML = val; }
+
+    // COMPLETE PEDIATRIC DATABASE (113 QUESTIONS)
+    var rawDB = [
         // --- 1. Growth & Nutrition (12) ---
         {c:"growth", q:"Ali can sit on small chair; walks up stairs with 1 hand held; makes tower of 4 cubes; and can name pictures. What is the expected age of Ali?", o:["12 months","15 months","18 months","24 months","30 months"], a:2},
         {c:"growth", q:"Salem runs well, opens doors; climbs on furniture; makes tower of 7 cubes, puts 3 words together; handles spoon well; and helps to undress. What is the expected age of Salem?", o:["15 months","18 months","24 months","30 months","36 months"], a:2},
@@ -481,12 +482,14 @@
         {c:"gastro", q:"A 14-month-old bottle fed girl presents with vomiting and diarrhea. Doughy skin, capillary refill 3 sec; serum Na+ (160 mEq/L), K+ (4.1 mEq/L). BEST initial fluid therapy is", o:["Isotonic N S","½ N S","¼ N S","0.2 N S","Ringer lactate"], a:0},
         {c:"gastro", q:"A 9-month-old girl presents with vomiting and diarrhea. Doughy skin, Na+ (168 mEq/L)... patient shows improvement on two shots of isotonic N S. NEXT step in management is", o:["oral rehydration solution","5% dextrose + ½ normal saline over 24 hr","5% dextrose + ½ normal saline over 48 hr","5% dextrose + ¼ normal saline over 24 hr","5% dextrose + ¼ normal saline over 48 hr"], a:2},
 
-        // --- 8. Respiratory (5) ---
+        // --- 8. Respiratory (5 + 2 NEW) ---
         {c:"resp", q:"A change in the color or consistency of the nasal secretions during the course of common cold illness may indicate", o:["sinusitis","bacterial superinfection","accumulation of polymorphonuclear cells","vasomotor rhinitis","allergic rhinitis"], a:2},
         {c:"resp", q:"Which of the following is no more effective than placebo for the treatment of cold symptoms?", o:["Zinc","Pseudoephedrine","Phenylephrine","Vitamin C","Saline nose drops"], a:3},
         {c:"resp", q:"Which of the following is a minor symptom of sinusitis?", o:["Purulent anterior nasal discharge","Nasal congestion or obstruction","Facial congestion or fullness","Hyposmia or anosmia","Dental pain"], a:4},
         {c:"resp", q:"A 9-month-old infant... fever 38.9°C... able to feed normally. Mother has had a viral URI. The most appropriate action is to", o:["Give paracetamol drops and monitor at home","Give paracetamol , arrange for re-examination after 2 days","Admit to hospital urgently for investigations and antibiotic coverage","Ask for CBC and if normal, reassure mother that baby has viral infection","Give oral amoxicillin and monitor at home"], a:1},
         {c:"resp", q:"A previously well 3-year-old child is presenting with a 2-day history of coryzal symptoms and a one-day history of productive cough. Which statement is correct", o:["The commonest cause of these symptoms is bacterial infection","The presence of cough following viral infection makes the diagnosis of asthma likely","The diagnosis is cold","The diagnosis is pneumonia","An expectorant will be helpful in ameliorating the condition"], a:2},
+        {c:"resp", q:"Which of the following viral infections is classically characterized by upper respiratory tract manifestations that may include common cold, pharyngotonsillitis, otitis media, and pharyngoconjunctival fever?", o:["Adenovirus", "Influenza virus", "Respiratory syncytial virus", "Bordetella pertussis"], a:0},
+        {c:"resp", q:"High fever and toxic appearance in young infants is most commonly associated with:", o:["respiratory infection with Chlamydia trachomatis", "respiratory infection with Bordetella pertussis", "respiratory infection with influenza", "respiratory infection with respiratory syncytial virus"], a:2},
 
         // --- 9. CNS Infections (Meningitis) (23) ---
         {c:"cns", q:"A baby was diagnosed with neonatal Streptococcus meningitis 2 weeks ago. He completed a full course of therapy and presents to your clinic for follow-up. Which of the following is an important test to perform?", o:["Repeat CSF cultures","Ig levels","Hearing test","Brain MRI","Repeat blood cultures"], a:2},
@@ -514,18 +517,20 @@
         {c:"cns", q:"Steroids reduced hearing loss in children with meningitis due to", o:["Streptococcus pneumoniae","Neisseria meningitides","Haemophilus influenzae Type b","Staphylococcus aureus","Pseudomonas aeruginosa"], a:2}
     ];
 
-    let currentCategory = "";
-    let selectedChapter = "";
-    let currentQuestions = [];
-    let currentQuestionIndex = 0;
-    let userAnswers = []; 
-    let timerInterval;
-    let totalSeconds = 0;
-    let isSimulated = false;
-    let lastOrderType = ''; 
+    // ==========================================
+    // STATE & LOGIC
+    // ==========================================
+    var currentState = {
+        screen: 'screen-home',
+        chapter: '',
+        mode: '',
+        questions: [],
+        answers: [],
+        index: 0,
+        time: 0
+    };
 
-    // Category mapping
-    const categoryMap = {
+    var categoryMap = {
         'growth': 'Growth & Nutrition 👶',
         'breastfeeding': 'Breastfeeding 🍼',
         'pem': 'Protein Energy Malnutrition 📉',
@@ -538,54 +543,153 @@
         'all': 'ALL COMBINED 🧩'
     };
 
+    var currentQuestions = [];
+    var currentQuestionIndex = 0;
+    var userAnswers = []; 
+    var timerInterval = null;
+    var totalSeconds = 0;
+    var isSimulated = false;
+    var lastOrderType = ''; 
+
+    // --- State Persistence (LocalStorage) ---
+    function saveState() {
+        currentState.chapter = selectedChapter;
+        currentState.mode = lastOrderType;
+        currentState.questions = currentQuestions;
+        currentState.answers = userAnswers;
+        currentState.index = currentQuestionIndex;
+        currentState.time = totalSeconds;
+        
+        try {
+            localStorage.setItem('pediatricQuizState_v1', JSON.stringify(currentState));
+        } catch(e) { console.warn("Local storage error", e); }
+    }
+
+    function loadState() {
+        try {
+            var saved = localStorage.getItem('pediatricQuizState_v1');
+            if(saved) {
+                var parsed = JSON.parse(saved);
+                if(parsed && parsed.screen) {
+                    currentState = parsed;
+                    return true;
+                }
+            }
+        } catch(e) { console.warn("Local storage load error", e); }
+        return false;
+    }
+
+    function clearState() {
+        try {
+            localStorage.removeItem('pediatricQuizState_v1');
+        } catch(e) {}
+        currentState = { screen: 'screen-home', chapter: '', mode: '', questions: [], answers: [], index: 0, time: 0 };
+    }
+
     window.onload = function() {
-        const catContainer = document.getElementById('chapters-container');
-        const keys = Object.keys(categoryMap);
-        keys.forEach(k => {
-            const btn = document.createElement('button');
+        var catContainer = document.getElementById('chapters-container');
+        var keys = Object.keys(categoryMap);
+        for(var i=0; i<keys.length; i++) {
+            var k = keys[i];
+            var btn = document.createElement('button');
             btn.className = k === 'all' ? 'btn-large btn-orange' : 'btn-large btn-blue';
             btn.innerText = categoryMap[k];
-            btn.onclick = () => selectCategory(k);
+            // using closure for ES5 compatibility
+            (function(key){
+                btn.onclick = function() { selectCategory(key); };
+            })(k);
             catContainer.appendChild(btn);
-        });
+        }
+
+        if(loadState()) {
+            selectedChapter = currentState.chapter;
+            lastOrderType = currentState.mode;
+            currentQuestions = currentState.questions;
+            currentQuestionIndex = currentState.index;
+            userAnswers = currentState.answers;
+            totalSeconds = currentState.time;
+
+            if(currentState.screen === 'screen-quiz') {
+                showScreen('screen-quiz');
+                startTimer();
+                if(lastOrderType === 'simulated') {
+                    isSimulated = true;
+                    document.getElementById('standard-quiz-ui').style.display = 'none';
+                    document.getElementById('simulated-quiz-ui').style.display = 'block';
+                    document.getElementById('question-tracker').style.display = 'none';
+                    renderSimulatedExam();
+                } else {
+                    isSimulated = false;
+                    document.getElementById('simulated-quiz-ui').style.display = 'none';
+                    document.getElementById('standard-quiz-ui').style.display = 'block';
+                    document.getElementById('question-tracker').style.display = 'inline';
+                    loadStandardQuestion();
+                }
+            } else if (currentState.screen === 'screen-result') {
+                // If they reload on result page, just clear and go home to avoid complex state recreation
+                clearState();
+                showScreen('screen-home');
+            } else {
+                showScreen(currentState.screen);
+            }
+        } else {
+            showScreen('screen-home');
+        }
     };
 
     function showScreen(screenId) {
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        var screens = document.querySelectorAll('.screen');
+        for(var i=0; i<screens.length; i++) {
+            screens[i].classList.remove('active');
+        }
         document.getElementById(screenId).classList.add('active');
 
-        const footerQuote = document.getElementById('main-footer-quote');
+        var footerQuote = document.getElementById('main-footer-quote');
         if (screenId === 'screen-home') {
             footerQuote.style.display = 'block';
         } else {
             footerQuote.style.display = 'none';
         }
+
+        currentState.screen = screenId;
+        if(screenId !== 'screen-result' && screenId !== 'screen-review') {
+            saveState();
+        }
     }
 
     function goHome() {
         clearInterval(timerInterval);
+        clearState();
         showScreen('screen-home');
     }
 
     function exitQuiz() {
         clearInterval(timerInterval);
-        showScreen('screen-setup');
+        clearState();
+        showScreen('screen-home');
     }
 
+    var selectedChapter = "";
     function selectCategory(cat) {
         selectedChapter = cat;
         showScreen('screen-setup');
     }
 
     function startTimer() {
-        totalSeconds = 0;
         clearInterval(timerInterval);
-        document.getElementById('timer').innerHTML = `⏱️ 00:00`;
-        timerInterval = setInterval(() => {
+        var updateTime = function() {
+            var m = Math.floor(totalSeconds / 60).toString();
+            if(m.length < 2) m = '0' + m;
+            var s = (totalSeconds % 60).toString();
+            if(s.length < 2) s = '0' + s;
+            document.getElementById('timer').innerHTML = '⏱️ ' + m + ':' + s;
+        };
+        updateTime();
+        timerInterval = setInterval(function() {
             totalSeconds++;
-            const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
-            const s = (totalSeconds % 60).toString().padStart(2, '0');
-            document.getElementById('timer').innerHTML = `⏱️ ${m}:${s}`;
+            updateTime();
+            // Auto-save every 5 seconds to minimize writes
+            if(totalSeconds % 5 === 0) saveState();
         }, 1000);
     }
 
@@ -593,18 +697,27 @@
         lastOrderType = orderType; 
 
         if (selectedChapter === 'all') {
-            currentQuestions = [...rawDB];
+            currentQuestions = rawDB.slice();
         } else {
-            currentQuestions = rawDB.filter(q => q.c === selectedChapter);
+            currentQuestions = [];
+            for(var i=0; i<rawDB.length; i++) {
+                if(rawDB[i].c === selectedChapter) {
+                    currentQuestions.push(rawDB[i]);
+                }
+            }
         }
 
         if(orderType === 'random' || orderType === 'simulated') { 
             shuffleArray(currentQuestions); 
         }
+
+        userAnswers = [];
+        for(var k=0; k<currentQuestions.length; k++){
+            userAnswers.push(null);
+        }
         
-        userAnswers = new Array(currentQuestions.length).fill(null);
-        showScreen('screen-quiz');
-        startTimer();
+        currentQuestionIndex = 0;
+        totalSeconds = 0;
 
         if(orderType === 'simulated') {
             isSimulated = true;
@@ -617,12 +730,15 @@
             document.getElementById('simulated-quiz-ui').style.display = 'none';
             document.getElementById('standard-quiz-ui').style.display = 'block';
             document.getElementById('question-tracker').style.display = 'inline';
-            currentQuestionIndex = 0;
             loadStandardQuestion();
         }
+        showScreen('screen-quiz');
+        startTimer();
+        saveState();
     }
 
     function restartExam() {
+        clearState();
         startExam(lastOrderType);
     }
 
@@ -630,58 +746,67 @@
     function loadStandardQuestion() {
         document.getElementById('next-btn').style.display = 'none';
         document.getElementById('feedback-msg').style.display = 'none';
-        
+
         if(currentQuestionIndex > 0) {
             document.getElementById('prev-btn').style.display = 'block';
         } else {
             document.getElementById('prev-btn').style.display = 'none';
         }
-        
-        const qData = currentQuestions[currentQuestionIndex];
-        document.getElementById('question-tracker').innerHTML = `Q ${currentQuestionIndex + 1}/${currentQuestions.length}`;
-        
-        const progressPercentage = ((currentQuestionIndex) / currentQuestions.length) * 100;
+
+        var qData = currentQuestions[currentQuestionIndex];
+        document.getElementById('question-tracker').innerHTML = 'Q ' + (currentQuestionIndex + 1) + '/' + currentQuestions.length;
+
+        var answeredCount = 0;
+        for(var c=0; c<userAnswers.length; c++) { if(userAnswers[c] !== null) answeredCount++; }
+        var progressPercentage = (answeredCount / currentQuestions.length) * 100;
         document.getElementById('progress-bar').style.width = progressPercentage + "%";
-        document.getElementById('question-text').innerText = qData.q;
         
-        const optionsContainer = document.getElementById('options-container');
+        document.getElementById('question-text').innerText = qData.q;
+
+        var optionsContainer = document.getElementById('options-container');
         optionsContainer.innerHTML = ''; 
 
-        const previousAnswer = userAnswers[currentQuestionIndex];
+        var previousAnswer = userAnswers[currentQuestionIndex];
 
-        qData.o.forEach((optText, index) => {
-            const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            
-            const letter = String.fromCharCode(65 + index);
-            btn.innerText = `${letter}) ${optText}`;
-            
-            if (previousAnswer !== null) {
-                btn.disabled = true;
-                if (index === qData.a) {
-                    btn.classList.add('correct');
-                } else if (index === previousAnswer) {
-                    btn.classList.add('wrong');
+        for(var i=0; i<qData.o.length; i++) {
+            (function(index){
+                var optText = qData.o[index];
+                var btn = document.createElement('button');
+                btn.className = 'option-btn';
+
+                var letter = String.fromCharCode(65 + index);
+                btn.innerText = letter + ') ' + optText;
+
+                if (previousAnswer !== null) {
+                    btn.disabled = true;
+                    if (index === qData.a) {
+                        btn.classList.add('correct');
+                    } else if (index === previousAnswer) {
+                        btn.classList.add('wrong');
+                    }
+                } else {
+                    btn.onclick = function() { checkStandardAnswer(index, btn, qData); };
                 }
-            } else {
-                btn.onclick = () => checkStandardAnswer(index, btn, qData);
-            }
-            optionsContainer.appendChild(btn);
-        });
+                optionsContainer.appendChild(btn);
+            })(i);
+        }
 
         if (previousAnswer !== null) {
             showFeedback('feedback-msg', previousAnswer === qData.a);
             document.getElementById('next-btn').style.display = 'block';
         }
+        saveState();
     }
 
     function checkStandardAnswer(selectedIndex, btnClicked, qData) {
         userAnswers[currentQuestionIndex] = selectedIndex; 
-        
-        const correctIndex = qData.a;
-        const allButtons = document.getElementById('options-container').querySelectorAll('.option-btn');
-        allButtons.forEach(btn => btn.disabled = true);
-        
+
+        var correctIndex = qData.a;
+        var allButtons = document.getElementById('options-container').querySelectorAll('.option-btn');
+        for(var i=0; i<allButtons.length; i++) {
+            allButtons[i].disabled = true;
+        }
+
         if (selectedIndex === correctIndex) {
             btnClicked.classList.add('correct');
             showFeedback('feedback-msg', true);
@@ -691,6 +816,12 @@
             showFeedback('feedback-msg', false);
         }
         document.getElementById('next-btn').style.display = 'block';
+        
+        var answeredCount = 0;
+        for(var c=0; c<userAnswers.length; c++) { if(userAnswers[c] !== null) answeredCount++; }
+        document.getElementById('progress-bar').style.width = (answeredCount / currentQuestions.length) * 100 + "%";
+        
+        saveState();
     }
 
     function nextQuestion() {
@@ -711,80 +842,93 @@
 
     // --- SIMULATED MODE ---
     function renderSimulatedExam() {
-        const simContainer = document.getElementById('simulated-quiz-ui');
+        var simContainer = document.getElementById('simulated-quiz-ui');
         simContainer.innerHTML = '';
 
-        document.getElementById('progress-bar').style.width = "0%";
+        var answeredCount = 0;
+        for(var c=0; c<userAnswers.length; c++) { if(userAnswers[c] !== null) answeredCount++; }
+        document.getElementById('progress-bar').style.width = (answeredCount / currentQuestions.length) * 100 + "%";
 
-        currentQuestions.forEach((qData, qIndex) => {
-            const qBlock = document.createElement('div');
-            qBlock.className = 'sim-question-block';
-            
-            const qTitle = document.createElement('div');
-            qTitle.className = 'question-text';
-            qTitle.innerText = `Q ${qIndex + 1}/${currentQuestions.length}: ${qData.q}`;
-            qBlock.appendChild(qTitle);
+        for(var qIndex=0; qIndex<currentQuestions.length; qIndex++) {
+            (function(index){
+                var qData = currentQuestions[index];
+                var qBlock = document.createElement('div');
+                qBlock.className = 'sim-question-block';
 
-            const optsDiv = document.createElement('div');
-            optsDiv.className = 'options-container';
+                var qTitle = document.createElement('div');
+                qTitle.className = 'question-text';
+                qTitle.innerText = 'Q ' + (index + 1) + '/' + currentQuestions.length + ': ' + qData.q;
+                qBlock.appendChild(qTitle);
 
-            const fbDiv = document.createElement('div');
-            fbDiv.className = 'feedback-msg';
-            fbDiv.id = `fb-sim-${qIndex}`;
+                var optsDiv = document.createElement('div');
+                optsDiv.className = 'options-container';
 
-            qData.o.forEach((optText, optIndex) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                const letter = String.fromCharCode(65 + optIndex);
-                btn.innerText = `${letter}) ${optText}`;
-                btn.onclick = () => checkSimulatedAnswer(qIndex, optIndex, btn, qData, optsDiv, fbDiv);
-                optsDiv.appendChild(btn);
-            });
+                var fbDiv = document.createElement('div');
+                fbDiv.className = 'feedback-msg';
+                fbDiv.id = 'fb-sim-' + index;
 
-            qBlock.appendChild(optsDiv);
-            qBlock.appendChild(fbDiv);
-            simContainer.appendChild(qBlock);
-        });
+                for(var optIndex=0; optIndex<qData.o.length; optIndex++) {
+                    (function(oIndex){
+                        var optText = qData.o[oIndex];
+                        var btn = document.createElement('button');
+                        btn.className = 'option-btn';
+                        var letter = String.fromCharCode(65 + oIndex);
+                        btn.innerText = letter + ') ' + optText;
+                        
+                        if(userAnswers[index] !== null) {
+                            btn.disabled = true;
+                            if(userAnswers[index] === oIndex) {
+                                btn.classList.add('opt-selected');
+                            }
+                        } else {
+                            btn.onclick = function() { checkSimulatedAnswer(index, oIndex, btn, qData, optsDiv, fbDiv); };
+                        }
+                        optsDiv.appendChild(btn);
+                    })(optIndex);
+                }
 
-        const finishBtn = document.createElement('button');
-        finishBtn.className = 'btn-large btn-orange';
-        finishBtn.innerHTML = '✅ Finish Exam';
+                qBlock.appendChild(optsDiv);
+                qBlock.appendChild(fbDiv);
+                simContainer.appendChild(qBlock);
+            })(qIndex);
+        }
+
+        var finishBtn = document.createElement('button');
+        finishBtn.className = 'btn-large btn-red';
+        finishBtn.innerHTML = '🛑 END EXAM';
         finishBtn.onclick = endExam;
         simContainer.appendChild(finishBtn);
     }
 
     function checkSimulatedAnswer(qIndex, optIndex, btnClicked, qData, optsDiv, fbDiv) {
         if(userAnswers[qIndex] !== null) return; 
-        
-        userAnswers[qIndex] = optIndex; 
-        
-        const correctIndex = qData.a;
-        const allButtons = optsDiv.querySelectorAll('.option-btn');
-        allButtons.forEach(btn => btn.disabled = true);
-        
-        if (optIndex === correctIndex) {
-            btnClicked.classList.add('correct');
-            showFeedback(fbDiv.id, true);
-        } else {
-            btnClicked.classList.add('wrong');
-            allButtons[correctIndex].classList.add('correct');
-            showFeedback(fbDiv.id, false);
-        }
 
-        const answeredCount = userAnswers.filter(ans => ans !== null).length;
+        userAnswers[qIndex] = optIndex; 
+
+        var allButtons = optsDiv.querySelectorAll('.option-btn');
+        for(var i=0; i<allButtons.length; i++) {
+            allButtons[i].classList.remove('opt-selected');
+            allButtons[i].disabled = true;
+        }
+        btnClicked.classList.add('opt-selected');
+
+        var answeredCount = 0;
+        for(var c=0; c<userAnswers.length; c++) { if(userAnswers[c] !== null) answeredCount++; }
         document.getElementById('progress-bar').style.width = (answeredCount / currentQuestions.length) * 100 + "%";
+        
+        saveState();
     }
 
     // --- SHARED LOGIC ---
     function showFeedback(divId, isCorrect) {
-        const feedbackDiv = document.getElementById(divId);
+        var feedbackDiv = document.getElementById(divId);
         feedbackDiv.style.display = 'block';
-        
+
         if (isCorrect) {
             feedbackDiv.innerHTML = "✔️ Correct";
             feedbackDiv.className = "feedback-msg msg-correct";
         } else {
-            feedbackDiv.innerHTML = `❌ Wrong`;
+            feedbackDiv.innerHTML = "❌ Wrong";
             feedbackDiv.className = "feedback-msg msg-wrong";
         }
     }
@@ -792,42 +936,45 @@
     function endExam() {
         clearInterval(timerInterval);
         document.getElementById('progress-bar').style.width = "100%";
-        
-        let correctCount = 0;
-        let wrongCount = 0;
-        let wrongAnswersData = [];
 
-        userAnswers.forEach((ans, idx) => {
-            if (ans !== null && ans === currentQuestions[idx].a) {
+        var correctCount = 0;
+        var wrongCount = 0;
+        var wrongAnswersData = [];
+
+        for(var idx=0; idx<userAnswers.length; idx++) {
+            var ans = userAnswers[idx];
+            var currentQ = currentQuestions[idx];
+            if (ans !== null && ans === currentQ.a) {
                 correctCount++;
             } else {
                 wrongCount++;
-                const correctStr = currentQuestions[idx].o[currentQuestions[idx].a];
-                const correctLetter = String.fromCharCode(65 + currentQuestions[idx].a);
-                
-                let userStr = "No Answer";
-                if(ans !== null) {
-                    const userLetter = String.fromCharCode(65 + ans);
-                    userStr = `${userLetter}) ${currentQuestions[idx].o[ans]}`;
+                var correctStr = currentQ.o[currentQ.a];
+                var correctLetter = String.fromCharCode(65 + currentQ.a);
+
+                var userStr = "No Answer / Skipped";
+                if(ans !== null && ans !== -1) {
+                    var userLetter = String.fromCharCode(65 + ans);
+                    userStr = userLetter + ') ' + currentQ.o[ans];
                 }
-                
+
                 wrongAnswersData.push({
-                    qData: currentQuestions[idx],
+                    qData: currentQ,
                     userAns: userStr,
-                    correctAns: `${correctLetter}) ${correctStr}`
+                    correctAns: correctLetter + ') ' + correctStr
                 });
             }
-        });
+        }
 
         window.currentWrongAnswers = wrongAnswersData;
+        clearState(); 
 
-        setTimeout(() => {
+        setTimeout(function() {
             showScreen('screen-result');
-            const percentage = Math.round((correctCount / currentQuestions.length) * 100) || 0;
-            document.getElementById('final-score').innerText = `${percentage}%`;
-            
-            const arabicMsgDiv = document.getElementById('custom-arabic-msg');
-            const btnAgain = document.getElementById('btn-again');
+            var percentage = Math.round((correctCount / currentQuestions.length) * 100) || 0;
+            document.getElementById('final-score').innerText = percentage + "%";
+
+            var arabicMsgDiv = document.getElementById('custom-arabic-msg');
+            var btnAgain = document.getElementById('btn-again');
 
             if (percentage === 100) {
                 arabicMsgDiv.innerText = "واو بجد تحفه اوي 🤯";
@@ -840,13 +987,15 @@
                 btnAgain.style.display = 'block'; 
             }
 
-            const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
-            const s = (totalSeconds % 60).toString().padStart(2, '0');
-            document.getElementById('final-time').innerHTML = `⏱️ Time Taken: ${m}:${s}`;
+            var m = Math.floor(totalSeconds / 60).toString();
+            if(m.length < 2) m = '0' + m;
+            var s = (totalSeconds % 60).toString();
+            if(s.length < 2) s = '0' + s;
+            document.getElementById('final-time').innerHTML = '⏱️ Time Taken: ' + m + ':' + s;
 
-            document.getElementById('stat-correct').innerHTML = `✔️ Correct: ${correctCount}`;
-            document.getElementById('stat-wrong').innerHTML = `❌ Wrong: ${wrongCount}`;
-            
+            document.getElementById('stat-correct').innerHTML = '✔️ Correct: ' + correctCount;
+            document.getElementById('stat-wrong').innerHTML = '❌ Wrong: ' + wrongCount;
+
             if (wrongCount === 0) { 
                 document.getElementById('btn-review').style.display = 'none'; 
             } else { 
@@ -857,28 +1006,30 @@
 
     function showReview() {
         showScreen('screen-review');
-        const reviewList = document.getElementById('review-list');
+        var reviewList = document.getElementById('review-list');
         reviewList.innerHTML = '';
 
-        window.currentWrongAnswers.forEach((item, index) => {
-            const div = document.createElement('div');
+        for(var i=0; i<window.currentWrongAnswers.length; i++) {
+            var item = window.currentWrongAnswers[i];
+            var div = document.createElement('div');
             div.className = 'review-item';
-            div.innerHTML = `
-                <div class="review-q">Q: ${item.qData.q}</div>
-                <div class="review-wrong">❌ Yours: ${item.userAns}</div>
-                <div class="review-correct">✔️ Correct: ${item.correctAns}</div>
-            `;
+            div.innerHTML = 
+                '<div class="review-q">Q: ' + item.qData.q + '</div>' +
+                '<div class="review-wrong">❌ Yours: ' + item.userAns + '</div>' +
+                '<div class="review-correct">✔️ Correct: ' + item.correctAns + '</div>';
             reviewList.appendChild(div);
-        });
+        }
     }
 
     function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
         }
     }
 </script>
 
 </body>
-</html>
+    </html>
